@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></ p>
 
 <p>
   <strong>Name:</strong>
@@ -12,13 +12,24 @@
 
 <p>
   <strong>Phone:</strong>
-  <%= @restaurant.phone %>
+  <%= @restaurant.phone_number %>
 </p>
 
 <p>
   <strong>Category:</strong>
   <%= @restaurant.category %>
 </p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+<p>
+  <strong>Reviews</strong>
+  <ul>
+    <% @restaurant.reviews.each do |review| %>
+    <li>
+      <p>Review: <%= review.content %></p>
+      <p>Rating: <%= review.rating %></p>
+    </li>
+  <% end %>
+  </ul>
+</p>
+<%= link_to 'Add review', new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+<%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-primary" %>
+<%= link_to 'Back', restaurants_path, class: "btn btn-primary" %>
